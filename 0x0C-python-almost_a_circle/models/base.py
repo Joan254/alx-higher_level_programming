@@ -26,8 +26,8 @@ class Base:
         """Returns the JSON representation of list_dictionaries."""
         if list_dictionaries is None or list_dictionaries == []:
             return "[]"
-        if (type(list_dictionaries) != list or not
-                all(type(i) == dict for i in list_dictionaries)):
+        if (type(list_dictionaries) is not list or not
+                all(type(i) is dict for i in list_dictionaries)):
             raise TypeError("list_dictionaries must be a list of dictionaries")
         return json.dumps(list_dictionaries)
 
@@ -47,7 +47,7 @@ class Base:
         """Returns list of JSON string representations."""
         json_string_list = []
         if json_string is not None and json_string != '':
-            if type(json_string) != str:
+            if type(json_string) is not str:
                 raise TypeError("json_string must be a string")
             json_string_list = json.loads(json_string)
         return json_string_list
@@ -55,7 +55,7 @@ class Base:
     @classmethod
     def create(cls, **dictionary):
         """Returns an instance with all attributes already set."""
-        #create an instance of an existing class
+        # create an instance of an existing class
         if cls.__name__ == 'Rectangle':
             dummy = cls(1, 1)
         elif cls.__name__ == 'Square':
